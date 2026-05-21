@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+  </head>
+  <body>
+    <!-----initiallization of container for react-->
+    <div class="js-container"></div>
+
+    <script src="react-basics.js"></script>
+
+    <!--Needed External library files for starting code with react.js, mainly for websites-->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <!----initialize react with babble--->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+
+function ProductDetails({imageSrc, Item, Price, discountPrice}){
+
+   //using ternery operator
+    return(
+            <>
+                <img src={imageSrc} width="70"/>
+                <p>{Item}</p>                
+                 {discountPrice ? (
+                    <>
+                    <del>Price: ${Price}</del>
+                    <p>Discount price: ${discountPrice}</p>
+                    </>
+                ):(<>
+                    <p>Price: ${Price}</p>
+                    </>)}                                  
+                <button>Add to Cart</button> <br/><br/>                   
+            </>
+        ); 
+///using simple JSX
+    return(
+            <>
+                <img src={imageSrc} width="70"/>
+                <p>{Item}</p>
+               
+                {discountPrice && (
+                    <>
+                    <del>Price: ${Price}</del>
+                    <p>Discount price: ${discountPrice}</p>
+                    </>
+                )}
+                {!discountPrice && (
+                    <>
+                    <p>Price: ${Price}</p>
+                    </>
+                )}
+            <button>Add to Cart</button>                    
+            </>
+        );
+}
+
+
+function App(){/*-------------------------Both does same thing-----{ChatInput()} or <ChatInput></ChatInput>--------*/
+    return(
+        <>
+            <ProductDetails
+                    imageSrc="cotton-socks.png" 
+                    Item="Cotton socks" 
+                    Price="10.90"
+                    discountPrice="5.45"
+                />
+            <ProductDetails
+                    imageSrc="tennis-balls.png" 
+                    Item="Tennis balls"
+                    Price="6.00" 
+                />
+            <ProductDetails 
+                    imageSrc="plain-t-shirt.png"
+                    Item="Plain T-Shirt" 
+                    Price="7.99"
+                />
+            
+        </>
+        );
+        
+}
+        const container = document.querySelector('.js-container');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+    </script>
+    <!-------------------->
+  </body>
+</html>

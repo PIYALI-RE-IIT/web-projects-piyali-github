@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <!-----initiallization of container for react-->
+    <div class="js-container"></div>
+
+    <script src="react-basics.js"></script>
+
+    <!--Needed External library files for starting code with react.js, mainly for websites-->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <!----initialize react with babble--->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        ////The following is Advanced level of JavaScript called JSX, while using react we will always use JSX syntax.
+        ///The problem wih JSX is our browser can not understand it hence we need to use babble.js to convert it to javascript
+        const button = <button>Hello</button>;
+        const paragraph = <p>Paragraph of Text</p>;
+        const ProductCost = (10 + 16);
+        var ShippingCost = 5;
+        var TotalCost = '$'+ (ProductCost+ShippingCost);
+        var date = dayjs().format('MMMM D');
+        const clock = <p>Current time: {dayjs().format('HH:mm:ss')}</p>;
+
+      const container = document.querySelector('.js-container');
+      const root = ReactDOM.createRoot(container);
+      root.render(clock);
+
+      setInterval(() => {
+        const paragraph = <p>Current time: {dayjs().format('HH:mm:ss')}</p>;
+        root.render(paragraph);
+      }, 1000);
+
+        setInterval(() => {
+            console.log('I am Piyali');
+        },1000);
+
+        console.log(ProductCost)
+        console.log(dayjs().format('MMMM D'))
+
+        const div = (
+            <div>
+                <p>Today is {date}</p>
+                <p>Current time: {clock}</p>
+                <button>Hello</button>
+                <p>Paragraph of Text {2+2}</p>
+                <p>Cotton Socks</p>
+                <p>Price: ${5+5}</p>
+                <button>Add to Cart</button>
+
+                <p>Product cost: ${ProductCost}</p>
+                <p>Shipping cost: ${ShippingCost}</p>
+                <p>Total cost: {TotalCost}</p>
+                <button>Place your order</button>
+
+                
+            </div>
+        );
+
+      
+      
+      
+      
+    </script>
+    <!-------------------->
+  </body>
+</html>

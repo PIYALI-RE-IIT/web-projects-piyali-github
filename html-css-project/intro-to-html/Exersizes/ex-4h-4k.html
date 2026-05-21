@@ -1,0 +1,51 @@
+<style>
+  .stretch{
+    background-color: green;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    margin-right: 8px;
+    transition: padding-right 0.15s, padding-bottom 0.15s;
+    cursor: pointer;
+  }
+  .stretch:hover{
+    padding-right: 50px;
+    padding-bottom: 40px;
+  }
+
+  .shadow{
+    background-color: green;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    margin-right: 8px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.15s;
+    cursor: pointer;
+  }
+  .shadow:active{
+    margin-top: 7px;
+    margin-left: 7px;
+    box-shadow: 5px 5px 10px rgba(255, 255, 255, 1);
+  }
+
+</style>
+
+
+<!----ex 4h  ----->
+<button style="margin-right: 5px;">Back</button>
+<a href="#">1</a>
+<a href="#">2</a>
+<a href="#">3</a>
+<a href="#">4</a>
+<a href="#">5</a>
+<button style="margin-left: 5px;">Next</button>
+
+<button class="stretch">Stretch</button><br/>
+<button class="Shadow">Shadow</button>

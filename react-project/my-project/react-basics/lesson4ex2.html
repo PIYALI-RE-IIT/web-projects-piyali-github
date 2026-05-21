@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Email Page</title>
+    <style>
+        body{
+            font-family: Arial;
+            margin-top:0px;
+            margin-bottom:0px;
+        }
+        .send-buttons{
+            background-color: rgb(0, 123, 255);
+            color:white;
+            padding:12px 20px;
+            margin-left:10px;
+            margin-right:10px;
+            border:none;
+            border-radius:10px;
+            font-size:15px;
+            cursor: pointer;
+        }
+        
+        .inputs{
+            padding:12px 15px;
+            border-radius:10px;
+            border-width:1px;
+            font-size: 15px;
+            max-width: 300px;
+            margin-bottom:10px;
+            margin-right: 10px;
+        }
+       
+    </style>
+  </head>
+  <body>
+    <!-----initiallization of container for react-->
+    <div class="js-container"></div>
+
+    <script src="react-basics.js"></script>
+
+    <!--Needed External library files for starting code with react.js, mainly for websites-->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <!----initialize react with babble--->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+
+
+function App(){/*-------------------------Both does same thing-----{ChatInput()} or <ChatInput></ChatInput>--------*/
+    const [showPassword, setShowPassword] = React.useState(true)
+
+function showHide(){
+    if(showPassword){
+        setShowPassword(false);
+    }
+    else{
+        setShowPassword(true);
+    }
+}
+    return(
+        <>
+           <h2>Hello, welcome to my website</h2>
+            
+            <input className="inputs" placeholder="Email"/><br/>
+            <input className="inputs"placeholder="Password" type={showPassword ? "text":"password"}/>
+            <button onClick={showHide}>{showPassword ? "Hide":"Show"}</button><br/>
+            <button className="send-buttons">Login</button>
+            <button className="send-buttons">Sign up</button>
+        
+        </>
+        );
+}
+        const container = document.querySelector('.js-container');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+    </script>
+    <!-------------------->
+  </body>
+</html>

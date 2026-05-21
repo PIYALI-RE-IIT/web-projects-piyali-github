@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+  </head>
+  <body>
+    <!-----initiallization of container for react-->
+    <div class="js-container"></div>
+
+    <script src="react-basics.js"></script>
+
+    <!--Needed External library files for starting code with react.js, mainly for websites-->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
+    <!----initialize react with babble--->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+        function ChatInput({chatMessages, setChatMessages}){///component 1
+
+            const [inputText, setInputText] = React.useState('');
+
+            function saveInputText(event){
+                setInputText(event.target.value);
+            }
+
+            function sendMessage(){
+                const newChatMessages = [...chatMessages,
+                    {
+                        message: inputText,
+                        sender: 'user',
+                        id: crypto.randomUUID()
+                    }];
+               
+                    const response= Chatbot.getResponse(inputText);
+                    setChatMessages([
+                        ...newChatMessages,
+                        {
+                            message: response,
+                            sender: 'robot',
+                            id: crypto.randomUUID()
+                        }
+                    ]); 
+
+        setInputText('')
+            }
+
+            return (
+            <>
+              <input
+                placeholder="Send a message to Chatbot" 
+                size="50"
+                onChange = {saveInputText}
+                value={inputText}
+               />
+              <button onClick={sendMessage}>Send</button>  
+            </>
+
+            );
+        }
+
+        function ChatMessageSetUp({message,sender}){///use PascalCase letter format in function naming ///component 2
+            
+                ///if statement shortcuts below
+            return (
+                <div>
+                    {sender === 'robot' && (
+                        <img src="robot.png" width="50"/>
+                    )}
+                    {message}
+                    {sender === 'user' && (
+                        <img src="user.png" width="50"/>
+                    )}                
+                </div>
+
+            );
+        }
+
+function ChatMessagesContent({chatMessages}){///component 3
+    
+     return(
+        <>
+
+            {chatMessages.map((chatMessageProp) => {
+                return(
+                    <ChatMessageSetUp 
+                        message ={chatMessageProp.message}
+                        sender = {chatMessageProp.sender} 
+                        key = {chatMessageProp.id}           
+                    />
+                );
+            })}
+        </>
+        )
+}
+
+
+    function Counter({ count, setCount }){
+        function increaseCount() {
+          setCount(count + 1);
+        }
+    return(
+        <>              
+            <button  onClick={increaseCount}>
+                Clicked {count} {count === 1 ? 'time' : 'times'}
+            </button>
+                    
+        </>
+
+    );
+    }
+
+function App(){/*-------------------------Both does same thing-----{ChatInput()} or <ChatInput></ChatInput>--------*///component 4 and FINAL comp
+
+    // function clicked(){
+    //     console.log('Clicked')
+    // }
+    // function resetCount() {
+    //     setCount(0);
+    // }
+    // const [count, setCount] = React.useState(0);
+   
+    const [inputText, setInputText] = React.useState('');
+
+        function saveInputText(event) {
+          setInputText(event.target.value);
+        }
+        function resetText(){
+            setInputText('');
+        }
+        function exampleName(){
+            setInputText('Piyali');
+        }
+        return (
+          <>
+            <input
+              onChange={saveInputText}
+              placeholder="Type a name here"
+              value={inputText}
+            />
+            <button onClick={resetText}>
+                Reset
+            </button>
+            <button onClick={exampleName}>
+                Example
+            </button>
+
+            <p>Hello {inputText}</p>
+          </>
+        )
+        
+    //  <Counter 
+    //  count={count}
+    //  setCount={setCount}
+    //  />
+
+    //  <Counter 
+    //  count={count}
+    //  setCount={setCount}
+    //  />
+    //  <button onClick={resetCount}>
+    //     Reset
+    //  </button>
+     
+    
+    
+}
+        const container = document.querySelector('.js-container');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+    </script>
+    <!-------------------->
+  </body>
+</html>
